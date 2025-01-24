@@ -1,9 +1,27 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import PharmItem from './components/PharmList'
 import PharmList from './components/PharmList'
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import SendIcon from '@mui/icons-material/Send';
+import Divider from '@mui/material/Divider';
+
+const myTheme = createTheme({
+    palette: {
+        background: {
+            // default: "#f6f7f880"
+            default: "#fff"
+        },
+  },
+});
 
 function App() {
   const [items, setItems] = useState([])
@@ -18,13 +36,38 @@ function App() {
     setItems(newList);
   }
 
-  useEffect(() => { setItems(["item", "item", "item"])}, [])
+  const text = "item"
+  const secondary_text = "secondary text"
+
+  useEffect(() => { setItems([{text}, {text, secondary_text}, {text, secondary_text}])}, [])
 
   return (
-    <>
-        <PharmList items={items} deleteItem={deleteItem} />
-        <button onClick={() => addItem("item")}>+</button>
-    </>
+    // <ThemeProvider theme={myTheme}>
+        // <CssBaseline />
+            <Container maxWidth="sm">
+                <Card sx={{ minWidth: 275, mt: 2 }}>
+                    <CardContent>
+                        <Typography variant="h4" component="h2">
+                            Item's list
+                        </Typography>
+                        <PharmList items={items} deleteItem={deleteItem} />
+                        <Button 
+                            variant="outlined" 
+                            startIcon={<AddIcon />}
+                            onClick={() => addItem({text})}
+                        >
+                            add item
+                        </Button>
+                        <Divider sx={{ p: 2 }} />
+                        <Box sx={{ mt: 2, textAlign: "center"}}>
+                            <Button variant="contained" endIcon={<SendIcon />}>
+                                Submit
+                            </Button>
+                        </Box>
+                    </CardContent>
+                </Card>
+            </Container>
+    // </ThemeProvider>
   )
 }
 
