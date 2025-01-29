@@ -8,9 +8,9 @@ function PharmList(props) {
     return (
         <List sx={{ mt: 1 }}>
             <TransitionGroup>
-                {props.items?.map((item, idx) => (
-                    <Collapse key={idx}>
-                        <PharmItem idx={idx} item={item} deleteItem={props.deleteItem}/>
+                {props.items?.map((item) => (
+                    <Collapse key={item.id}>
+                        <PharmItem idx={item.id} item={item} deleteItem={props.deleteItem}/>
                     </Collapse>
                 ))}
             </TransitionGroup>
