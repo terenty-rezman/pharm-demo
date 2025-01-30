@@ -15,7 +15,7 @@ export default function Counter(props) {
             value={props.amountValue}
         >
             <Grid container spacing={2} sx={{justifyContent: "space-between", alignItems: "center"}}>
-            <Typography variant="subtitle1" color="textSecondary">Amount</Typography>
+            <Typography variant="subtitle1" color="textSecondary" sx={{ ml: 2 }}>Amount</Typography>
         <NumberField.ScrubArea className={styles.ScrubArea}>
             {/* <label htmlFor={id} className={styles.Label}>
             Amount

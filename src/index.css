@@ -14,6 +14,9 @@
   --color-gray-900: oklch(12% 5% 264 / 90%);
   --color-gray-950: oklch(12% 5% 264 / 95%);
 
+  --dsr-input-bg: rgb(var(--ds-rgb-gray-100));
+  --ds-rgb-gray-100: 243 244 246;
+
   @media (prefers-color-scheme: dark) {
     --color-blue: oklch(69% 50% 264);
     --color-red: oklch(80% 55% 31);

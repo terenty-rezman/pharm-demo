@@ -32,12 +32,15 @@ function PharmItem(props) {
             secondary={props.item.dosage + " гм"}
         /> */
 
-        <Grid container spacing={2} sx={{justifyContent: "space-between", alignItems: "center", mb: 1}}>
-            <Grid container spacing={2} sx={{justifyContent: "space-between", alignItems: "center"}}>
-                <Avatar {...stringAvatar(props.item.brandName)} />
-                <Typography variant="body1" color="textSecondary" sx={{fontSize: "1.2rem"}}>{props.item.brandName}</Typography>
+        <Grid container spacing={2} sx={{
+            justifyContent: "space-between", flexWrap: "nowrap", alignItems: "center", mb: 2,
+            backgroundColor: "var(--dsr-input-bg)", borderRadius: "14px"
+            }}>
+            <Grid container spacing={2} sx={{justifyContent: "space-between", flexWrap: "nowrap", alignItems: "center"}}>
+                {/* <Avatar {...stringAvatar(props.item.brandName)} /> */}
+                <Typography variant="body1" color="textSecondary" sx={{fontSize: "1.2rem", pl: 1}}>{props.item.brandName}</Typography>
             </Grid>
-            <Grid container spacing={2} sx={{justifyContent: "space-between", alignItems: "center"}}>
+            <Grid container spacing={2} sx={{justifyContent: "space-between", flexShrink: 0, alignItems: "center"}}>
              <Typography variant="body1" color="textSecondary" sx={{fontSize: "1.2rem"}}>{props.item.amount} шт</Typography>
                 <IconButton aria-label="delete"
                     onClick={() => props.deleteItem(props.idx)}

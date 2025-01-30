@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider";
 
 import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import Slide from '@mui/material/Grow';
+import Slide from '@mui/material/Zoom';
 
 import Counter from "./Counter2";
 
@@ -22,20 +22,20 @@ function NewItemPage(props) {
         fullScreen
         open={props.open}
         onClose={props.handleClose}
-        // TransitionComponent={Transition}
+        TransitionComponent={Transition}
         slotProps={{
           backdrop: {
             sx: {
-              backgroundColor: "#fff",
+              backgroundColor: "#00000000",
             },
           },
         }}
       >
         <Container maxWidth="sm" sx={{ padding: 1 }}>
-          <Typography variant="h4" component="h2">
+          <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
             Add Item
           </Typography>
-          <Box sx={{ m: 2, ml: 0, mr: 0 }}>
+          <Box sx={{ pt: 1 }}>
             <Autocomplete
             //   value={brandValue}
               onChange={(event, newValue) => {
@@ -45,18 +45,23 @@ function NewItemPage(props) {
               getOptionLabel={(option) => option}
               filterOptions={filterOptions}
               renderInput={(params) => (
-                <TextField {...params} label="Brand Name" />
+                <TextField {...params} label="Brand Name" sx={{ borderColor: "#fff" }} />
               )}
+              sx={{ backgroundColor: "var(--dsr-input-bg)", borderRadius: "14px" }}
             />
-            <Counter 
-                onAmountChange={(newValue, event) => setAmount(newValue)}
-                value={amount}
-            />
+            <Box sx={{mt: 5, mb: 3 }}>
+                <Counter 
+                    onAmountChange={(newValue, event) => setAmount(newValue)}
+                    value={amount}
+                />
+            </Box>
             <Divider sx={{ p: 2 }} />
-            <Box sx={{ mt: 2, textAlign: "center" }}>
+            <Box sx={{ mt: 3, textAlign: "right" }}>
               <Button
                 variant="contained"
                 size="large"
+                sx={{ borderRadius: "24px" }}
+                disableElevation
                 onClick={() => {
                     if (brandValue != null){
                         props.addItem({brandName: brandValue, amount: amount})
@@ -80,7 +85,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
-  stringify: (option) => option.title,
+  stringify: (option) => option,
 });
 
 

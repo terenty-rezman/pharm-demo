@@ -5,25 +5,18 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import SendIcon from "@mui/icons-material/Send";
+import SendIcon from "@mui/icons-material/ArrowForward";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid2";
 import NewItemPage from "./components/NewItemPage";
+import { ThemeProvider, useTheme } from '@mui/material/styles';
 
-const myTheme = createTheme({
-  palette: {
-    background: {
-      // default: "#f6f7f880"
-      default: "#fff",
-    },
-  },
-});
+import customTheme from "./CustomTheme";
 
 let id = 0;
 
@@ -53,32 +46,36 @@ function App() {
     addItem({ brandName: text, amount: 1 });
   }, []);
 
+  const outerTheme = useTheme();
+
   return (
-    // <ThemeProvider theme={myTheme}>
-    // <CssBaseline />
+    <ThemeProvider theme={customTheme(outerTheme)}>
+    <CssBaseline />
     <Container maxWidth="sm" sx={{ padding: 1 }}>
       {/* <Card sx={{ mt: 2, boxShadow: 1, padding: 0 }}>
                     <CardContent> */}
       <Box>
-        <Typography variant="h4" component="h2">
+        <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
           Item's list
         </Typography>
         <PharmList items={items} deleteItem={deleteItem} />
         <Button
           fullWidth
           size="large"
-          variant="outlined"
+          variant="text"
           startIcon={<AddIcon />}
           onClick={() => setNewItemPageOpen(true)}
         >
           add item
         </Button>
         <Divider sx={{ p: 2 }} />
-        <Box sx={{ mt: 2, textAlign: "center" }}>
+        <Box sx={{ mt: 3, textAlign: "right" }}>
           <Button
             variant="contained"
             size="large"
+            disableElevation
             endIcon={<SendIcon />}
+            sx={{ borderRadius: "24px" }}
           >
             Submit
           </Button>
@@ -88,7 +85,7 @@ function App() {
       </Box>
       <NewItemPage open={newItemPageOpen} handleClose={closeNewItemPage} addItem={addItem} />
     </Container>
-    // </ThemeProvider>
+    </ThemeProvider>
   );
 }
 
